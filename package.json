@@ -1,0 +1,22 @@
+{
+  "name": "monitoring",
+  "description": "Activity Monitor environment",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-less": "*",
+    "gulp-autoprefixer": "*",
+    "vinyl-source-stream": "*"
+  },
+  "dependencies": {
+    "browserify": "~6.0.3",
+    "mithril": "0.1.22",
+    "fastclick": "^1.0.3",
+    "smoothie": "^1.27.0"
+  }
+}
