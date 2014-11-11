@@ -21,8 +21,8 @@ swipe.config = function(config){
         }
       });
 
-      config.ctrl.cpus().cores().map(function(cpu){
-        cpus({ctrl:config.ctrl,cpu:cpu})
+      config.ctrl.cpus().map(function(cpu){
+        cpus({ctrl:config.ctrl,cpu:cpu},{})
       });
     }
 

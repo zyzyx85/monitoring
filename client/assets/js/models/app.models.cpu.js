@@ -4,33 +4,33 @@
 "use strict";
 
 var Cpu = function(param){
-  this.numCore = m.prop(param.numCore)
-  this.cores = m.prop(param.cores)
+  this.id = m.prop(param.id)
+  this.frequency = m.prop(param.frequency)
+  this.getCpu = function(){
+    this.frequency(parseInt(Math.random() * 100))
+    return this
+  }.bind(this)
 };
 
 Cpu.getCpu = function(){
-  return new Cpu({
-    numCore:4,
-    cores:[
-      {
-        id : "core_1",
-        frequency : parseInt(Math.random() * 100)
-      },
-      {
-        id : "core_2",
-        frequency : parseInt(Math.random() * 100)
-      },
-      {
-        id : "core_3",
-        frequency : parseInt(Math.random() * 100)
-      },
-      {
-        id : "core_4",
-        frequency : parseInt(Math.random() * 100)
-
-      }
-    ]
-  })
+  return [
+    new Cpu({
+      id : "core_1",
+      frequency : parseInt(Math.random() * 100)
+    }),
+    new Cpu({
+      id : "core_2",
+      frequency : parseInt(Math.random() * 100)
+    }),
+    new Cpu({
+      id : "core_3",
+      frequency : parseInt(Math.random() * 100)
+    }),
+    new Cpu({
+      id : "core_4",
+      frequency : parseInt(Math.random() * 100)
+    }),
+  ]
 };
 
 module.exports = Cpu;

@@ -47,10 +47,10 @@ views.swipe = function(ctrl){
   return m("#content",[
     swipe.view(ctrl,[
       m("div.d-page",[
-        ctrl.cpus().cores().map(function(cpu){
+        ctrl.cpus().map(function(cpu){
           return m("div.cpu",[
               m("canvas",{
-              id:cpu.id
+              id:cpu.id()
             })
           ])
         })

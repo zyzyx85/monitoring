@@ -13,4 +13,12 @@ module.exports = function(){
     this.dragend.scrollToPage(page);
     return true;
   }
+
+  this.getCpu = function(cpu) {
+    return cpu.getCpu()
+  }
+
+
+
+
 }

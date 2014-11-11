@@ -6,6 +6,7 @@
 var smoothie = require('smoothie');
 var cpu = {};
 
+//TODO refactoring
 module.exports = function(config,opt){
   opt = opt || {};
   var height     = opt.height      || 100;
@@ -22,8 +23,13 @@ module.exports = function(config,opt){
   var tsFillStyle = opt.tsFillStyle || "rgba(84,148,209,0.30)";
   var delay = opt.delay || 1000;
 
+  var ctrl = config.ctrl
+  var cpu = config.cpu
+
+  console.log(cpu)
+
   var line = new smoothie.TimeSeries();
-  var element = document.getElementById(config.cpu.id)
+  var element = document.getElementById(cpu.id())
   element.height = height;
   element.width = width;
   var smoothieChart = new smoothie.SmoothieChart({millisPerPixel:millisPerPixel,
@@ -41,14 +47,6 @@ module.exports = function(config,opt){
     fillStyle:tsFillStyle});
 
   setInterval(function() {
-    line.append(new Date().getTime(), parseInt(Math.random() * 100));
+    line.append(new Date().getTime(), ctrl.getCpu(cpu).frequency());
   }, delay);
 };
-
-
-//var chart = new SmoothieChart({millisPerPixel:46,grid:{fillStyle:'#1a1a1a',sharpLines:true,verticalSections:7},labels:{fillStyle:'#dddddd'},timestampFormatter:SmoothieChart.timeFormatter}),
-//  canvas = document.getElementById('smoothie-chart'),
-//  series = new TimeSeries();
-//
-//chart.addTimeSeries(series, {lineWidth:3.1,strokeStyle:'#3d74ff',fillStyle:'rgba(84,148,209,0.30)'});
-//chart.streamTo(canvas, 500);
