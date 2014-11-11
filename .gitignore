@@ -1,3 +1,9 @@
 node_modules
 monitoring.iml
 www
+platforms/android/ant-build/build.prop
+platforms/android/ant-build/CordovaApp-debug-unaligned.apk
+platforms/android/ant-build/CordovaApp-debug.apk
+platforms/android/ant-build/CordovaApp.ap_
+platforms/android/CordovaLib/ant-build/build.prop
+platforms/ios/Monitoring/config.xml
