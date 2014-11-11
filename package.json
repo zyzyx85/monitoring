@@ -11,7 +11,8 @@
     "gulp-concat": "*",
     "gulp-less": "*",
     "gulp-autoprefixer": "*",
-    "vinyl-source-stream": "*"
+    "vinyl-source-stream": "*",
+    "gulp-minify-html":"*"
   },
   "dependencies": {
     "browserify": "~6.0.3",
