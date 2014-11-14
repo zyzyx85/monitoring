@@ -10,7 +10,6 @@ module.exports = function(){
 
   this.swipe = function(page){
     this.page(page);
-    console.log(this.swiper());
     this.swiper().slide(page, this.swiper().speed());
     return true;
   }
