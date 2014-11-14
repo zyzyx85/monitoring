@@ -3,9 +3,9 @@
  */
 
 "use strict";
-var m = require("mithril")
-var swipe = require("../components/swipe")
-var cpu = require("../components/cpu")
+var m = require("mithril");
+var swipe = require("../components/swipe");
+var cpus_comp = require("../components/cpu");
 
 var views = {};
 
@@ -22,21 +22,21 @@ views.nav = function(ctrl){
     m("label.tab-bar__item.tab-bar--top-border__item", [
       m("input[name='top-tab-bar-b'][type='radio']",{
         checked: ctrl.page() === 1,
-        onclick: ctrl.swipe.bind(ctrl,1)
+        //onclick: ctrl.swipe.bind(ctrl,1)
       }),
       m("button.tab-bar__button.tab-bar--top-border__button", "Cpu")
     ]),
     m("label.tab-bar__item.tab-bar--top-border__item", [
       m("input[name='top-tab-bar-b'][type='radio']",{
         checked: ctrl.page() === 2,
-        onclick: ctrl.swipe.bind(ctrl,2)
+        //onclick: ctrl.swipe.bind(ctrl,2)
       }),
       m("button.tab-bar__button.tab-bar--top-border__button", "Ram")
     ]),
     m("label.tab-bar__item.tab-bar--top-border__item", [
       m("input[name='top-tab-bar-b'][type='radio']",{
         checked: ctrl.page() === 3,
-        onclick: ctrl.swipe.bind(ctrl,3)
+        //onclick: ctrl.swipe.bind(ctrl,3)
       }),
       m("button.tab-bar__button.tab-bar--top-border__button", "I/O")
     ])
@@ -45,24 +45,24 @@ views.nav = function(ctrl){
 
 views.swipe = function(ctrl){
   return m("#content",[
-    swipe.view(ctrl,[
-      m("div.d-page",[
-        ctrl.cpus().map(function(cpu){
-          return m("div.cpu",[
+    m("div.swipe",{config:swipe.config({ctrl:ctrl})},[
+      m("div.swipe-wrap",[
+        m("div.d-page",[
+          ctrl.cpus().map(function(cpu){
+            return m("div.cpu",[
               m("canvas",{
-              id:cpu.id()
-            })
-          ])
-        })
+                config:cpus_comp.config({ctrl:ctrl,cpu:cpu})
+              }),
+              m("legend.frequency","cpu @ "+cpu.frequency()+"%")
+            ])
+          })
 
-        //cpu.view(ctrl),
-        //cpu.view(ctrl),
-        //cpu.view(ctrl)
-      ]),
-      m("div.d-page","Ram"),
-      m("div.d-page","I/O")
+        ]),
+        m("div.d-page","Ram"),
+        m("div.d-page","I/O")
+      ])
+
     ])
   ]);
 };
-
 

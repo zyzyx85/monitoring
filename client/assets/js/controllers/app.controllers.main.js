@@ -2,11 +2,11 @@
  * Created by federico on 01/11/14.
  */
 "use strict";
-var cpu = require("../models/app.models.cpu")
+var cpu_model = require("../models/app.models.cpu")
 
 module.exports = function(){
   this.page = m.prop(1);
-  this.cpus = m.prop(cpu.getCpu());
+  this.cpus = m.prop(cpu_model.getCpu());
 
   this.swipe = function(page){
     this.page(page);
@@ -15,7 +15,10 @@ module.exports = function(){
   }
 
   this.getCpu = function(cpu) {
-    return cpu.getCpu()
+    cpu = cpu.getCpu();
+    m.redraw.strategy("diff")
+    m.redraw()
+    return cpu;
   }
 
 
