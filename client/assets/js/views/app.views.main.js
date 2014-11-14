@@ -21,22 +21,22 @@ views.nav = function(ctrl){
   return m(".tab-bar.tab-bar--top.tab-bar--top-border", [
     m("label.tab-bar__item.tab-bar--top-border__item", [
       m("input[name='top-tab-bar-b'][type='radio']",{
-        checked: ctrl.page() === 1,
-        //onclick: ctrl.swipe.bind(ctrl,1)
+        checked: ctrl.page() === 0,
+        onclick: ctrl.swipe.bind(ctrl,0)
       }),
       m("button.tab-bar__button.tab-bar--top-border__button", "Cpu")
     ]),
     m("label.tab-bar__item.tab-bar--top-border__item", [
       m("input[name='top-tab-bar-b'][type='radio']",{
-        checked: ctrl.page() === 2,
-        //onclick: ctrl.swipe.bind(ctrl,2)
+        checked: ctrl.page() === 1,
+        onclick: ctrl.swipe.bind(ctrl,1)
       }),
       m("button.tab-bar__button.tab-bar--top-border__button", "Ram")
     ]),
     m("label.tab-bar__item.tab-bar--top-border__item", [
       m("input[name='top-tab-bar-b'][type='radio']",{
-        checked: ctrl.page() === 3,
-        //onclick: ctrl.swipe.bind(ctrl,3)
+        checked: ctrl.page() === 2,
+        onclick: ctrl.swipe.bind(ctrl,2)
       }),
       m("button.tab-bar__button.tab-bar--top-border__button", "I/O")
     ])
@@ -53,7 +53,7 @@ views.swipe = function(ctrl){
               m("canvas",{
                 config:cpus_comp.config({ctrl:ctrl,cpu:cpu})
               }),
-              m("legend.frequency","cpu @ "+cpu.frequency()+"%")
+              m("legend.frequency",cpu.id()+" @ "+cpu.frequency()+"%")
             ])
           })
 

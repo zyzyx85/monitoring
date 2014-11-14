@@ -35,6 +35,10 @@ module.exports = function Swipe(container, options) {
   var speed = options.speed || 300;
   options.continuous = options.continuous !== undefined ? options.continuous : true;
 
+  function getSpeed(){
+    return speed;
+  }
+
   function setup() {
 
     // cache slides
@@ -468,6 +472,10 @@ module.exports = function Swipe(container, options) {
 
   // expose the Swipe API
   return {
+    speed : function(){
+      getSpeed();
+    },
+
     setup: function() {
 
       setup();

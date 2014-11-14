@@ -11,10 +11,16 @@ var swipe = {};
 swipe.config = function(config){
   return function(element, isInitialized) {
     if(!isInitialized){
-      config.ctrl.swipe = new swipejs(element);
-
+      config.ctrl.swiper = m.prop(new swipejs(element,{
+          continuous:false,
+          transitionEnd: function(index) {
+            config.ctrl.page(index)
+            m.redraw.strategy("diff")
+            m.redraw()
+          }
+        })
+      );
     }
-
 
   }.bind(this)
 };

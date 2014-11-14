@@ -11,7 +11,6 @@ cpu.config = function(config){
 
   return function(element, isInitialized) {
     if(!isInitialized){
-      console.log("cpu");
       var opt = config.opt || {};
       var height     = opt.height      || 100;
       var width     = opt.width      || window.innerWidth -20;
