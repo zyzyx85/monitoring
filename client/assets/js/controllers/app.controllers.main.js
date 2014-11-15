@@ -6,8 +6,12 @@ var cpu_model = require("../models/app.models.cpu")
 
 module.exports = function(){
   this.page = m.prop(0);
-  this.cpus = m.prop(cpu_model.getCpu());
-
+  this.cpus = m.prop([]);
+  m.startComputation();
+  cpu_model.getCpu().then(function(data){
+    this.cpus(data);
+    m.endComputation();
+  }.bind(this));
   this.swipe = function(page){
     this.page(page);
     this.swiper().slide(page, this.swiper().speed());
@@ -15,9 +19,10 @@ module.exports = function(){
   }
 
   this.getCpu = function(cpu) {
-    cpu = cpu.getCpu();
-    m.redraw.strategy("diff");
-    m.redraw()
+    m.startComputation();
+    cpu.update().then(function(){
+      m.endComputation();
+    });
     return cpu;
   }
 

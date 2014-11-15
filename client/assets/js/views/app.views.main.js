@@ -53,7 +53,7 @@ views.swipe = function(ctrl){
               m("canvas",{
                 config:cpus_comp.config({ctrl:ctrl,cpu:cpu})
               }),
-              m("legend.frequency",cpu.id()+" @ "+cpu.frequency()+"%")
+              m("legend.frequency",cpu.model()+" @ "+cpu.frequency()+"%")
             ])
           })
 
