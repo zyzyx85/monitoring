@@ -53,7 +53,24 @@ views.swipe = function(ctrl){
               m("canvas",{
                 config:cpus_comp.config({ctrl:ctrl,cpu:cpu})
               }),
-              m("legend.frequency",cpu.model()+" @ "+cpu.frequency()+"%")
+              m("ul.frequency",[
+               m("li",[
+                m("span.legend.total"),
+                m("span.label","total: "+cpu.frequency()+"%")
+               ]),
+               m("li",[
+                 m("span.legend.user"),
+                 m("span.label","user: "+cpu.user()+"%")
+               ]),
+               m("li",[
+                 m("span.legend.sys"),
+                 m("span.label","sys: "+cpu.sys()+"%")
+               ]),
+               m("li",[
+                 m("span.legend.nice"),
+                 m("span.label","nice: "+cpu.nice()+"%")
+               ]),
+              ])
             ])
           })
 

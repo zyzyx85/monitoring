@@ -21,17 +21,16 @@ cpu.config = function(config){
       var labelFillStyle = opt.labelFillStyle || '#dddddd';
       var maxValue = opt.maxValue || 100;
       var minValue = opt.minValue || 0;
-      var lineWidth = opt.lineWidth || 3.1;
-      var strokeStyle = opt.strokeStyle || "#3d74ff";
-      var tsFillStyle = opt.tsFillStyle || "rgba(84,148,209,0.30)";
       var delay = opt.delay || 1000;
 
       var ctrl = config.ctrl;
       var cpu = config.cpu;
 
-      var line = new smoothie.TimeSeries();
+      var total = new smoothie.TimeSeries();
+      var user = new smoothie.TimeSeries();
+      var nice = new smoothie.TimeSeries();
+      var sys = new smoothie.TimeSeries();
 
-      //element = document.getElementById(cpu.id())
       element.height = height;
       element.width = width;
       var smoothieChart = new smoothie.SmoothieChart({millisPerPixel:millisPerPixel,
@@ -44,13 +43,23 @@ cpu.config = function(config){
         maxValue:maxValue,minValue:minValue});
 
       smoothieChart.streamTo(element,delay);
-      smoothieChart.addTimeSeries(line, {lineWidth:lineWidth,
-        strokeStyle:strokeStyle,
-        fillStyle:tsFillStyle});
+
+      smoothieChart.addTimeSeries(total, {lineWidth:3,
+        strokeStyle:"#3d74ff",
+        fillStyle:"rgba(84,148,209,0.30)"});
+      smoothieChart.addTimeSeries(user, {lineWidth:1.5,
+        strokeStyle:"#FF0BB1"});
+      smoothieChart.addTimeSeries(nice, {lineWidth:1.5,
+        strokeStyle:"#FFDE24"});
+      smoothieChart.addTimeSeries(sys, {lineWidth:1.5,
+        strokeStyle:"#30D8FF"});
 
 
       setInterval(function() {
-        line.append(new Date().getTime(), ctrl.getCpu(cpu).frequency());
+        total.append(new Date().getTime(), ctrl.getCpu(cpu).frequency());
+        user.append(new Date().getTime(), ctrl.getCpu(cpu).user());
+        nice.append(new Date().getTime(), ctrl.getCpu(cpu).nice());
+        sys.append(new Date().getTime(), ctrl.getCpu(cpu).sys());
       }, delay);
 
     };
