@@ -2,7 +2,8 @@
  * Created by federico on 02/11/14.
  */
 "use strict";
-
+//TODO refactoring
+var host = "212.47.228.57";
 var Cpu = function (param) {
   this.id = m.prop(param.id);
   this.model = m.prop(param.model);
@@ -15,21 +16,15 @@ var Cpu = function (param) {
   parseInt(param.nice) +
   parseInt(param.sys));
 
-  this.update = function(){
-    return m.request({
-      method:     'GET',
-      background:true,
-      url:        "http://localhost:3000/cpu/"+this.id()
-    }).then(function(req){
-      this.frequency(parseInt(req.user) +
-        parseInt(req.nice) +
-        parseInt(req.sys));
-      this.user(req.user);
-      this.nice(req.nice);
-      this.sys(req.sys);
-      this.idle(req.idle);
-      this.irq(req.irq);
-    }.bind(this))
+  this.update = function(req){
+    this.frequency(parseInt(req.user) +
+    parseInt(req.nice) +
+    parseInt(req.sys));
+    this.user(req.user);
+    this.nice(req.nice);
+    this.sys(req.sys);
+    this.idle(req.idle);
+    this.irq(req.irq);
   }
 
 };
@@ -38,7 +33,8 @@ var Cpu = function (param) {
 Cpu.getCpu = function () {
   return m.request({
     method:     'GET',
-    url:        "http://localhost:3000/cpu",
+    //url:        "http://212.47.228.57:3000/cpu",
+    url:        "http://"+host+":3000/cpu",
     background:true,
     type:       Cpu
   })
