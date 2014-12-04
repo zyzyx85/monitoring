@@ -3,7 +3,7 @@
  */
 "use strict";
 //TODO refactoring
-var host = "localhost";
+var host = "212.47.228.57";
 var Cpu = function (param) {
   this.id = m.prop(param.id);
   this.model = m.prop(param.model);
@@ -17,7 +17,6 @@ var Cpu = function (param) {
   parseInt(param.sys));
 
   this.update = function(req){
-    console.log(this);
     this.frequency(parseInt(req.user) +
     parseInt(req.nice) +
     parseInt(req.sys));
@@ -35,7 +34,7 @@ Cpu.getCpu = function () {
   return m.request({
     method:     'GET',
     //url:        "http://212.47.228.57:3000/cpu",
-    url:        "http://localhost:3000/cpu",
+    url:        "http://"+host+":3000/cpu",
     background:true,
     type:       Cpu
   })

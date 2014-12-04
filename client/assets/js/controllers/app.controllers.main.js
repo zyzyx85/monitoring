@@ -17,7 +17,6 @@ module.exports = function(){
   this.update = function(request){
     var obj = JSON.parse(request);
     this.cpus().forEach(function(cpu,i){
-      //console.log(obj[i]);
       cpu.update(obj[i]);
     })
   }.bind(this);
