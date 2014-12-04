@@ -30,19 +30,21 @@ var app = {
   // 'load', 'deviceready', 'offline', and 'online'.
   bindEvents:    function () {
     window.addEventListener('load', this.onload, false);
-    document.addEventListener('deviceready', this.onDeviceReady, false);
+    //document.addEventListener('deviceready', this.onDeviceReady, false);
   },
   //onload EventHandler
   onload: function() {
     fastclick(document.body);
+    app.receivedEvent('deviceready');
+    route()
   },
   // deviceready Event Handler
   //
   // The scope of 'this' is the event. In order to call the 'receivedEvent'
   // function, we must explicitly call 'app.receivedEvent(...);'
   onDeviceReady: function () {
-    app.receivedEvent('deviceready');
-    route()
+    //app.receivedEvent('deviceready');
+    //route()
     //app.route.call()
   },
   // Update DOM on a Received Event

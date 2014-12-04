@@ -2,7 +2,8 @@
  * Created by federico on 02/11/14.
  */
 "use strict";
-
+//TODO refactoring
+var host = "localhost";
 var Cpu = function (param) {
   this.id = m.prop(param.id);
   this.model = m.prop(param.model);
@@ -16,10 +17,11 @@ var Cpu = function (param) {
   parseInt(param.sys));
 
   this.update = function(){
+
     return m.request({
       method:     'GET',
       background:true,
-      url:        "http://localhost:3000/cpu/"+this.id()
+      url:        "http://" + host + ":3000/cpu/"+this.id()
     }).then(function(req){
       this.frequency(parseInt(req.user) +
         parseInt(req.nice) +
@@ -38,7 +40,7 @@ var Cpu = function (param) {
 Cpu.getCpu = function () {
   return m.request({
     method:     'GET',
-    url:        "http://localhost:3000/cpu",
+    url:        "http://" + host + ":3000/cpu",
     background:true,
     type:       Cpu
   })
