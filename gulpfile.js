@@ -36,6 +36,6 @@ gulp.task('default', [
   'minify-html'
 ], function () {
   gulp.watch('./client/assets/css/*.less', ['build-less']);
-  gulp.watch('./client/index.html', ['minify-html']);
+  gulp.watch('./client/html/index.html', ['minify-html']);
   gulp.watch('./client/assets/js/**/*.js', ['build-app']);
 });
