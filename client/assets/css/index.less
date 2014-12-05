@@ -15,9 +15,35 @@ body{
     div.cpu{
       width:100%;
       height: auto;
-      padding: 10px;
-      canvas{
-//        width:100%!important;
+      padding: 10px 10px 0 10px;
+      .frequency{
+        font-size: 0.5em;
+        padding: 0;
+        margin: 0;
+        li{
+          display: inline-block;
+          width:23%;
+          span.label{
+            margin-left: 5%;
+          }
+          span.legend{
+            display: inline-block;
+            width: 20%;
+            height: 5px;
+            &.total{
+              background-color: #3d74ff;
+            }
+            &.user{
+              background-color: #FF0BB1;
+            }
+            &.sys{
+              background-color: #30D8FF;
+            }
+            &.nice{
+              background-color: #FFDE24;
+            }
+          }
+        }
       }
     }
 

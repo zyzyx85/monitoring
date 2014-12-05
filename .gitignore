@@ -10,3 +10,4 @@ platforms/ios/Monitoring/config.xml
 CordovaApp.ap_.d
 Monitoring.xccheckout
 UserInterfaceState.xcuserstate
+platforms/android/ant-build/com.spindoxlabs.monitoring.android

@@ -3,12 +3,10 @@
  */
 "use strict";
 
-var m = require('mithril')
+var m = require('mithril');
 
 module.exports = function(){
   m.route(document.getElementById("application"), '/', {
     '/':  {controller: require('./controllers/app.controllers.main'), view: require('./views/app.views.main')}
-
-
   });
-}
+};

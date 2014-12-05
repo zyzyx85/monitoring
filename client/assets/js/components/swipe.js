@@ -3,40 +3,29 @@
  */
 "use strict"
 
-var Dragend = require("../lib/dragend");
-var cpus = require("./cpu")
-var smoothie = require('smoothie');
+var swipejs = require("../lib/swipe");
+var cpus = require("./cpu");
 var m = require("mithril");
 var swipe = {};
 
 swipe.config = function(config){
   return function(element, isInitialized) {
     if(!isInitialized){
-      config.ctrl.dragend = new Dragend(element, {
-        pageClass : "d-page",
-        onSwipeEnd:function(el,container,page){
-          config.ctrl.page(page)
-          m.redraw.strategy("diff")
-          m.redraw()
-        }
-      });
-
-      config.ctrl.cpus().cores().map(function(cpu){
-        cpus({ctrl:config.ctrl,cpu:cpu})
-      });
+      config.ctrl.swiper = m.prop(new swipejs(element,{
+          continuous:false,
+          transitionEnd: function(index) {
+            config.ctrl.page(index)
+            m.redraw.strategy("diff")
+            m.redraw()
+          }
+        })
+      );
     }
-
 
   }.bind(this)
 };
 
-swipe.view = function(ctrl,views) {
-  return m("div",{config:swipe.config({ctrl:ctrl})}, [
-    views.map(function(view){
-      return view
-    })
-  ])
-};
+
 
 module.exports = swipe;
 
