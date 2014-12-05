@@ -11,3 +11,5 @@ RUN cordova run ios
 BUILD cordova build ios
 
 windows phone: sucks!
+
+Server : https://github.com/zyzyx85/monitoring-s
