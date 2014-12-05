@@ -8,19 +8,19 @@ var app = {
 
   bindEvents:    function () {
     window.addEventListener('load', this.onload, false);
-    //document.addEventListener('deviceready', this.onDeviceReady, false);
+    document.addEventListener('deviceready', this.onDeviceReady, false);
   },
 
   onload: function() {
     fastclick(document.body);
-    app.receivedEvent('deviceready');
-    route();
+    //app.receivedEvent('deviceready');
+    //route();
   },
 
 
   onDeviceReady: function () {
-    //app.receivedEvent('deviceready');
-    //route();
+    app.receivedEvent('deviceready');
+    route();
   },
   receivedEvent: function (id) {
     console.log('Received Event: ' + id);
